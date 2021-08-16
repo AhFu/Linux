@@ -22,4 +22,4 @@ alias grep='grep --color=auto -iP'
 
 
 # microk8s
-alias mkubectl= multipass kubectl
+alias mkubectl='multipass kubectl'
