@@ -22,7 +22,7 @@ alias grep='grep --color=auto -iP'
 
 
 # microk8s
-if [[ $(snap list |grep microk8s) ]]
+if [[ $(snap list |grep 'microk8s' ]]
 then
 alias mkubectl='microk8s kubectl'
 fi
