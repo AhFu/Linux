@@ -17,7 +17,7 @@ LIGHTCYAN='\033[1;36m'
 WHITE='\033[1;37m'
 
 # Aliases
-alias cl=clear mekala.zadrozinski@hok.com
+alias cl=clear
 alias grep='grep --color=auto -iP'
 
 
