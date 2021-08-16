@@ -1,0 +1,2 @@
+alias mkubectl='microk8s kubectl'
+source <(kubectl completion bash)
