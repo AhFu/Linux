@@ -25,4 +25,5 @@ alias pd=pushd
 if [[ $(snap list |grep 'microk8s') ]]
 then
 alias mkubectl='microk8s kubectl'
+source <(kubectl completion bash)
 fi
