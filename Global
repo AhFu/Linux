@@ -21,9 +21,4 @@ alias cl=clear
 alias grep='grep --color=auto -iP'
 alias pd=pushd
 
-# microk8s
-if [[ $(snap list |grep 'microk8s') ]]
-then
-alias mkubectl='microk8s kubectl'
-source <(kubectl completion bash)
-fi
+
