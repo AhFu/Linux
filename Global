@@ -21,4 +21,7 @@ alias cl=clear
 alias grep='grep --color=auto -iP'
 alias pd=pushd
 
-
+if [[ $(snap list | grep microk8s -c) -eq 1 ]]
+then 
+echo "wtf"
+fi
