@@ -3,18 +3,12 @@ if [[ $# -eq 0 ]]
 then
 return
 fi
-echo $@
-local dirs=(pushd $@ > /tmp/pd.dat)
-echo "${#dirs[@]}"
+echo "ipnut is $@"
+pushd $@
+local dirs=($(pushd))
 for(( i=0;i<${#dirs[@]};i++ )); do
-dirs[i]="${red}$i)${normal}_${dirs[i]}"
+dirs[i]="${red}$i)${normal}${dirs[i]}"
 done
-
 echo -e ${dirs[@]}
 }
 
-function pd_test (){
-echo "ipnut is $@"
-local dirs=(${pushd $@} )
-echo $dirs[0]
-}
