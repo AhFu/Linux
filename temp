@@ -1,6 +1,13 @@
 function pd_test (){
-pushd $1>/tmp/d
-dirs=($(cat /tmp/d))
+if [[ $1 =~ "$[/|~]" ]]
+then 
+pushd $1
+return 
+fi
+
+#pushd $1>/tmp/d
+#dirs=($(cat /tmp/d))
+dirs=($(pushd $1))
 for(( i=0;i<${#dirs[@]};++i )); do
 dirs[i]="${red}${i}_${normal}${dirs[i]}"
 done
