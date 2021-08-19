@@ -1,14 +1,9 @@
 function pd_test (){
-if [[ $# -eq 0 ]]
-then
-return
-fi
-echo "ipnut is $@"
-pushd $@
-local dirs=($(pushd))
-for(( i=0;i<${#dirs[@]};i++ )); do
-dirs[i]="${red}$i)${normal}${dirs[i]}"
+pushd $1>/tmp/d
+dirs=($(cat /tmp/d))
+for(( i=0;i<${#dirs[@]};++i )); do
+dirs[i]="${red}${i}_${normal}${dirs[i]}"
 done
-echo -e ${dirs[@]}
+echo -e  ${dirs[@]}
 }
 
