@@ -1,6 +1,9 @@
 function pd_test (){
-if [[ ! $1 =~ $/|~ ]]
+regex="^[^\/\~].*$"
+if [[  $1 =~ ${regex} &&   $# -ne 0 ]];
+echo $#
 then 
+echo "wtf"
 pushd $1
 return 
 fi
@@ -13,4 +16,5 @@ dirs[i]="${red}${i}_${normal}${dirs[i]}"
 done
 echo -e  ${dirs[@]}
 }
+
 
