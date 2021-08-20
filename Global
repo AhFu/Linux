@@ -19,7 +19,7 @@ white='\033[1;37m'
 # Aliases
 alias cl=clear
 alias grep='grep --color=auto -iP'
-alias pd=pushd
+alias cd=pushd
 
 if [[ $(snap list | grep microk8s -c) -eq 1 ]]
 then 
