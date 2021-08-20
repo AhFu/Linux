@@ -4,6 +4,7 @@ if [[  $1 =~ ${regex} && $# -ne 0  ]]
 then 
 echo "test"
 pushd $1
+return
 fi
 
 #pushd $1>/tmp/d
