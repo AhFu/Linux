@@ -1,5 +1,5 @@
 function pd_test (){
-if [[ ! $1 =~ "$[/|~]" ]]
+if [[ ! $1 =~ $/|~ ]]
 then 
 pushd $1
 return 
