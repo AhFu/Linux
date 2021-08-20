@@ -2,7 +2,7 @@ function pd_test (){
 regex="^[^\/\~].*$"
 if [[  $1 =~ ${regex} && $# -ne 0  ]]
 then 
-echo "wtf"
+echo "test"
 pushd $1
 fi
 
