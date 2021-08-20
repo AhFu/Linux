@@ -1,11 +1,9 @@
 function pd_test (){
 regex="^[^\/\~].*$"
-if [[  $1 =~ ${regex} &&   $# -ne 0 ]];
-echo $#
+if [[  $1 =~ ${regex} && $# -ne 0  ]]
 then 
 echo "wtf"
 pushd $1
-return 
 fi
 
 #pushd $1>/tmp/d
