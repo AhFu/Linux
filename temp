@@ -2,14 +2,17 @@ function cdd() {
 local tmpPath=/tmp/dir.dat
 rm -f tmpPath 2>/dev/null
 
-if [[ $# -ne 1   ]] || [[ $1 =~ [/~]$ ]];
+    
+if [[ $# -ne 1  ]] || [[ $1 == ~ ]] || [[ $1 == / ]] ;
     then 
+    
     pushd $@  > /dev/null   
-elif [[ -s $tmpPath ]]
+elif [[ -s $tmpPath ]] && [[ $@ =~ [0-3] ]]
     then 
-    a=($(cat $tmpPath))
+     a=($(cat $tmpPath))
+    
     if [[ $@ -le ${#a[@]} ]]
-        then
+        then        
         pushd ${a[$@]} > /dev/null
     fi
 else    
@@ -33,7 +36,4 @@ else
             fi
         fi
 fi
-
 }
-
-cdd /var
