@@ -1,19 +1,39 @@
-function pd_test (){
-regex="^[^\/\~].*$"
-if [[  $1 =~ ${regex} && $# -ne 0  ]]
-then 
-echo "test"
-pushd $1
-return
+function cdd() {
+local tmpPath=/tmp/dir.dat
+rm -f tmpPath 2>/dev/null
+
+if [[ $# -ne 1   ]] || [[ $1 =~ [/~]$ ]];
+    then 
+    pushd $@  > /dev/null   
+elif [[ -s $tmpPath ]]
+    then 
+    a=($(cat $tmpPath))
+    if [[ $@ -le ${#a[@]} ]]
+        then
+        pushd ${a[$@]} > /dev/null
+    fi
+else    
+    pushd $@  > /dev/null
+        if [[ $? -eq 0 ]] 
+        then   
+            if [[ -f $tmpPath ]]
+            then 
+            a=($(cat $tmpPath))
+            echo -n "$@" > $tmpPath
+            for i in {0..3};do  
+                if [[ ! ${a[i]} == $@ ]]                    
+                    then                    
+                    echo -n " ${a[i]}" >> $tmpPath
+                fi                
+            done  
+            echo -n "Previous dirs: ";cat "$tmpPath";echo -e "\n" 
+            else
+            echo -n "$@">> $tmpPath
+            echo -n "Previous dirs: ";cat  $tmpPath;echo -e "\n" 
+            fi
+        fi
 fi
 
-#pushd $1>/tmp/d
-#dirs=($(cat /tmp/d))
-dirs=($(pushd $1))
-for(( i=0;i<${#dirs[@]};++i )); do
-dirs[i]="${red}${i}_${normal}${dirs[i]}"
-done
-echo -e  ${dirs[@]}
 }
 
-
+cdd /var
