@@ -3,11 +3,11 @@ local tmpPath=/tmp/dir.dat
 rm -f tmpPath 2>/dev/null
 
     
-if [[ $# -ne 1  ]] || [[ $1 == ~ ]] || [[ $1 == / ]] ;
+if [[ $# -ne 1  ]] || [[ $1 == ~ ]] || [[ $1 == / ]]|| [[ $1 == .. ]]|| [[ $1 == . ]] ;
     then 
     
     pushd $@  > /dev/null   
-elif [[ -s $tmpPath ]] && [[ $@ =~ [0-3] ]]
+elif [[ -s $tmpPath ]] && [[ $@ =~ [0-9]+ ]]
     then 
      a=($(cat $tmpPath))
     
@@ -29,11 +29,19 @@ else
                     echo -n " ${a[i]}" >> $tmpPath
                 fi                
             done  
-            echo -n "Previous dirs: ";cat "$tmpPath";echo -e "\n" 
+            echo -en "Previous dirs:\033[0;31m";cat "$tmpPath";echo -e "\n" 
             else
             echo -n "$@">> $tmpPath
-            echo -n "Previous dirs: ";cat  $tmpPath;echo -e "\n" 
+            echo -en "Previous dirs:\033[0;31m ";cat  $tmpPath;echo -e "\n" 
             fi
         fi
 fi
 }
+
+
+
+
+
+
+
+
