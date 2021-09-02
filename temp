@@ -3,7 +3,7 @@ local tmpPath=/tmp/dir.dat
 rm -f tmpPath 2>/dev/null
 
     
-if [[ $# -ne 1  ]] || [[ $1 == ~ ]] || [[ $1 == / ]]|| [[ $1 == .. ]]|| [[ $1 == . ]] ;
+if [[ $# -ne 1  ]] || [[ $1 == ~ ]] || [[ $1 == / ]]|| [[ $1 == .. ]]|| [[ $1 == . ]]  ;
     then 
     
     pushd $@  > /dev/null   
@@ -22,9 +22,9 @@ else
             if [[ -f $tmpPath ]]
             then 
             a=($(cat $tmpPath))
-            echo -n "$@" > $tmpPath
+            echo -n "${PWD}" > $tmpPath
             for i in {0..3};do  
-                if [[ ! ${a[i]} == $@ ]]                    
+                if [[ ! ${a[i]} == ${PWD} ]]                    
                     then                    
                     echo -n " ${a[i]}" >> $tmpPath
                 fi                
