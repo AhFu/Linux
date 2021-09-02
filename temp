@@ -1,11 +1,14 @@
 function cdd() {
 local tmpPath=/tmp/dir.dat
 rm -f tmpPath 2>/dev/null
-
+if [[ $# -eq 0 ]]
+    then
+    echo -en "Previous dirs:\033[0;31m";cat "$tmpPath";echo -e "\n" 
+    return
+fi
     
 if [[ $# -ne 1  ]] || [[ $1 == ~ ]] || [[ $1 == / ]]|| [[ $1 == .. ]]|| [[ $1 == . ]]  ;
     then 
-    
     pushd $@  > /dev/null   
 elif [[ -s $tmpPath ]] && [[ $@ =~ [0-9]+ ]]
     then 
@@ -39,9 +42,4 @@ fi
 }
 
 
-
-
-
-
-
-
+cdd
