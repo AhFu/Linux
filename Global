@@ -19,10 +19,55 @@ white='\033[1;37m'
 # Aliases
 alias cl=clear
 alias grep='grep --color=auto -iP'
-alias cd=pushd
+
 
 if [[ $(snap list | grep microk8s -c) -eq 1 ]]
 then 
 alias kubectl='microk8s kubectl'
 source <(kubectl completion bash)
 fi
+
+function cdd() {
+local tmpPath=/tmp/dir.dat
+rm -f tmpPath 2>/dev/null
+if [[ $# -eq 0 ]]
+    then
+    echo -en "Previous dirs:\033[0;31m";cat "$tmpPath";echo -e "\n" 
+    return
+fi
+    
+if [[ $# -ne 1  ]] || [[ $1 == ~ ]] || [[ $1 == / ]]|| [[ $1 == .. ]]|| [[ $1 == . ]]  ;
+    then 
+    pushd $@  > /dev/null   
+elif [[ -s $tmpPath ]] && [[ $@ =~ [0-9]+ ]]
+    then 
+     a=($(cat $tmpPath))
+    
+    if [[ $@ -le ${#a[@]} ]]
+        then        
+        pushd ${a[$@]} > /dev/null
+    fi
+else    
+    pushd $@  > /dev/null
+        if [[ $? -eq 0 ]] 
+        then   
+            if [[ -f $tmpPath ]]
+            then 
+            a=($(cat $tmpPath))
+            echo -n "${PWD}" > $tmpPath
+            for i in {0..3};do  
+                if [[ ! ${a[i]} == ${PWD} ]]                    
+                    then                    
+                    echo -n " ${a[i]}" >> $tmpPath
+                fi                
+            done  
+            echo -en "Previous dirs:\033[0;31m";cat "$tmpPath";echo -e "\n" 
+            else
+            echo -n "$@">> $tmpPath
+            echo -en "Previous dirs:\033[0;31m ";cat  $tmpPath;echo -e "\n" 
+            fi
+        fi
+fi
+}
+
+alias cd=cdd
