@@ -39,7 +39,7 @@ fi
 if [[ $# -ne 1  ]] || [[ $1 == ~ ]] || [[ $1 == / ]]|| [[ $1 == .. ]]|| [[ $1 == . ]]  ;
     then 
     pushd $@  > /dev/null   
-elif [[ -s $tmpPath ]] && [[ $@ =~ [0-9]+ ]]
+elif [[ -s $tmpPath ]] && [[ $@ =~ ^[0-9]+ ]]
     then 
      a=($(cat $tmpPath))
     
