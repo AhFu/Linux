@@ -16,9 +16,13 @@ lightpurple='\033[1;35m'
 lightcyan='\033[1;36m'
 white='\033[1;37m'
 
+function cl(){ piped=$(cat /dev/stdin);clear;echo  "$piped";}
+
 # Aliases
-alias cl=clear
+
 alias grep='grep --color=auto -iP'
+
+
 
 
 if [[ $(snap list | grep microk8s -c) -eq 1 ]]
