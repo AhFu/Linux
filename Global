@@ -16,7 +16,7 @@ lightpurple='\033[1;35m'
 lightcyan='\033[1;36m'
 white='\033[1;37m'
 
-function cl(){ piped=$(cat /dev/stdin);clear;echo  "$piped";}
+function cl(){ piped=$(cat /dev/stdin);clear; history 1|sed 's/[0-9]\+/The last command was/' |sed 's/|cl$//' ; echo -e "\n$piped";}
 
 # Aliases
 
