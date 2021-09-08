@@ -38,7 +38,7 @@ if [[ $# -eq 0 ]]
     then
          local i=0   
             for j in $(cat $tmpPath) ;do
-                echo -en "\033[1;30m${i}\033[0m_${j}; "
+                echo -en "${j}_\033[1;30m${i}\033[0m; "
                 i=$((i+1))
             done
             echo -e "\n"
@@ -72,7 +72,7 @@ else
             done  
             local i=0   
             for j in $(cat $tmpPath) ;do
-                echo -en "\033[1;30m${i}\033[0m_${j}; "
+                 echo -en "${j}_\033[1;30m${i}\033[0m; "
                 i=$((i+1))
             done
             echo -e "\n"
@@ -81,7 +81,7 @@ else
             echo -n "$@">> $tmpPath
             local i=0   
             for j in $(cat $tmpPath) ;do
-                echo -en "\033[1;30m${i}\033[0m_${j}; "
+                 echo -en "${j}_\033[1;30m${i}\033[0m; "
                 i=$((i+1))
             done
             echo -e "\n"
@@ -89,5 +89,6 @@ else
         fi
 fi
 }
+
 
 alias cd=cdd
