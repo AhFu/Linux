@@ -16,21 +16,6 @@ lightpurple='\033[1;35m'
 lightcyan='\033[1;36m'
 white='\033[1;37m'
 
-function cl(){ piped=$(cat /dev/stdin);clear; history 1|sed 's/[0-9]\+/The last command was/' |sed 's/|cl$//' ; echo -e "\n$piped";}
-
-# Aliases
-
-alias grep='grep --color=auto -iP'
-
-
-
-
-if [[ $(snap list | grep microk8s -c) -eq 1 ]]
-then 
-alias kubectl='microk8s kubectl'
-source <(kubectl completion bash)
-fi
-
 function cdd() {
 local tmpPath=/tmp/dir.dat
 rm -f tmpPath 2>/dev/null
@@ -89,6 +74,7 @@ else
         fi
 fi
 }
+
 
 
 alias cd=cdd
