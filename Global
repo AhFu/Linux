@@ -36,7 +36,12 @@ local tmpPath=/tmp/dir.dat
 rm -f tmpPath 2>/dev/null
 if [[ $# -eq 0 ]]
     then
-    echo -en "Previous dirs:\033[0;31m";cat "$tmpPath";echo -e "\033[0m\n" 
+         local i=0   
+            for j in $(cat $tmpPath) ;do
+                echo -en "\033[1;30m${i}\033[0m_${j}; "
+                i=$((i+1))
+            done
+            echo -e "\n"
     return
 fi
     
@@ -65,10 +70,21 @@ else
                     echo -n " ${a[i]}" >> $tmpPath
                 fi                
             done  
-            echo -en "Previous dirs:\033[0;31m";cat "$tmpPath";echo -e "\033[0m\n" 
+            local i=0   
+            for j in $(cat $tmpPath) ;do
+                echo -en "\033[1;30m${i}\033[0m_${j}; "
+                i=$((i+1))
+            done
+            echo -e "\n"
+          #  echo -en "Previous dirs:\033[0;31m";cat "$tmpPath";echo -e "\033[0m\n" 
             else
             echo -n "$@">> $tmpPath
-            echo -en "Previous dirs:\033[0;31m ";cat  $tmpPath;echo -e "\033[0m\n" 
+            local i=0   
+            for j in $(cat $tmpPath) ;do
+                echo -en "\033[1;30m${i}\033[0m_${j}; "
+                i=$((i+1))
+            done
+            echo -e "\n"
             fi
         fi
 fi
