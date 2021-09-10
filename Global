@@ -21,7 +21,7 @@ piped=$(cat /dev/stdin);
 clear;
 if [[ $1 == -s ]];
     then
-    echo -e "$piped"
+    echo  "$piped"
     else
     history 1|sed 's/[0-9]\+/The last command was/' |sed 's/|cl$//' ; echo -e "$piped";
 fi
