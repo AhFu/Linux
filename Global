@@ -16,6 +16,9 @@ lightpurple='\033[1;35m'
 lightcyan='\033[1;36m'
 white='\033[1;37m'
 
+export k8s="/var/snap/microk8s/current"
+
+
 function cl(){
 #trying to remove non print chars
 #piped=$(cat /dev/stdin| sed 's/[^[:print:]]//g');  
