@@ -18,6 +18,7 @@ white='\033[1;37m'
 
 export k8s="/var/snap/microk8s/current"
 
+# study later how to preserve colors  https://superuser.com/questions/352697/preserve-colors-while-piping-to-tee
 
 function cl(){
 #trying to remove non print chars
