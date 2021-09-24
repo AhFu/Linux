@@ -40,7 +40,7 @@ awk "/$1/{print \$0}"
 
 # Aliases
 
-alias grep='grep --color=auto -iP'
+alias grep='grep --color=always -iP'
 
 
 
