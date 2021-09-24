@@ -33,6 +33,11 @@ if [[ $1 == -s ]];
 fi
  }
 
+function where(){
+awk "/$1/{print \$0}"
+}
+
+
 # Aliases
 
 alias grep='grep --color=auto -iP'
